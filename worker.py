@@ -1,9 +1,6 @@
 from PySide6.QtCore import QObject, Signal, Slot
 import requests
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
+from backend.config import API_BASE_URL
 
 
 class FlashcardWorker(QObject):
@@ -15,12 +12,6 @@ class FlashcardWorker(QObject):
         self.file_path = file_path
         self.instruction = instruction
 
-        env = os.getenv("ENVIRONMENT", "dev")
-        if env == "prod":
-            self.api_url = os.getenv("PROD_API_URL")
-        else:
-            self.api_url = os.getenv("DEV_API_URL")
-
     @Slot()
     def run(self):
         try:
@@ -28,7 +19,7 @@ class FlashcardWorker(QObject):
                 content = f.read()
 
             response = requests.post(
-                self.api_url,
+                f"{API_BASE_URL}/generate",
                 json={"text": content, "prompt": self.instruction}
             )
             response.raise_for_status()
