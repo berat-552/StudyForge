@@ -1,8 +1,13 @@
-FROM python:3.11-alpine AS base
+FROM python:3.11-slim AS base
 
 WORKDIR /app
 
-RUN apk add --no-cache build-base gcc musl-dev libffi-dev
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    gcc \
+    libffi-dev \
+    libgl1 \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 RUN pip install --upgrade pip && \
