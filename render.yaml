@@ -4,7 +4,7 @@ services:
     plan: free
     repo: "https://github.com/berat-552/StudyForge"
     dockerfilePath: ./Dockerfile
-    runtime: python
+    runtime: docker
     envVars:
       - key: COHERE_API_KEY
         sync: false
