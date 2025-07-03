@@ -15,12 +15,12 @@ class FlashcardWorker(QObject):
     @Slot()
     def run(self):
         try:
-            with open(self.file_path, 'r', encoding='utf-8') as f:
+            with open(self.file_path, "r", encoding="utf-8") as f:
                 content = f.read()
 
             response = requests.post(
                 f"{API_BASE_URL}/generate",
-                json={"text": content, "prompt": self.instruction}
+                json={"text": content, "prompt": self.instruction},
             )
             response.raise_for_status()
             result = response.json().get("result", "")
