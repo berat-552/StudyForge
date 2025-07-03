@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual Environments
+.venv/
+env/
+venv/
+
+# Environment Variables
+.env
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# Byte-compiled / cache
+*.log
+
+# IDEs & Editors
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

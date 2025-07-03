@@ -1,0 +1,10 @@
+pyside6>=6.6.1
+fastapi>=0.110.0
+cohere>=4.27
+pyinstaller>=6.3.0  # For packaging into exe
+dotenv~=0.9.9
+python-dotenv~=1.1.1
+uvicorn
+requests
+pytest
+pytest-mock
