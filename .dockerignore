@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+tests/
+run-dev.bat
+.DS_Store
+.git
+.gitignore
+README.md
