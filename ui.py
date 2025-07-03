@@ -1,7 +1,11 @@
 from PySide6.QtGui import QDragEnterEvent, QDropEvent
 from PySide6.QtWidgets import (
-    QWidget, QVBoxLayout, QLabel, QTextEdit, QLineEdit,
-    QPushButton
+    QWidget,
+    QVBoxLayout,
+    QLabel,
+    QTextEdit,
+    QLineEdit,
+    QPushButton,
 )
 
 
@@ -48,7 +52,9 @@ class AIStudyContentGenerator(QWidget):
         layout.addWidget(self.result_box)
 
         self.instruction_input = QLineEdit()
-        self.instruction_input.setPlaceholderText("Optional: Add extra instruction (e.g. 'Use simple terms')")
+        self.instruction_input.setPlaceholderText(
+            "Optional: Add extra instruction (e.g. 'Use simple terms')"
+        )
         layout.addWidget(self.instruction_input)
 
         self.generate_button = QPushButton("Generate Flashcards")
@@ -56,6 +62,8 @@ class AIStudyContentGenerator(QWidget):
 
         self.setLayout(layout)
 
-        self.generate_button.clicked.connect(lambda: generate_callback(
-            self.dropped_file_path, self.instruction_input.text(), self.result_box
-        ))
+        self.generate_button.clicked.connect(
+            lambda: generate_callback(
+                self.dropped_file_path, self.instruction_input.text(), self.result_box
+            )
+        )

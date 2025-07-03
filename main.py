@@ -1,5 +1,11 @@
 from PySide6.QtWidgets import (
-    QWidget, QVBoxLayout, QLabel, QTextEdit, QLineEdit, QPushButton, QApplication
+    QWidget,
+    QVBoxLayout,
+    QLabel,
+    QTextEdit,
+    QLineEdit,
+    QPushButton,
+    QApplication,
 )
 from PySide6.QtCore import QThread, Slot
 import sys
@@ -30,7 +36,9 @@ class AIStudyContentGenerator(QWidget):
         layout.addWidget(self.result_box)
 
         self.instruction_input = QLineEdit()
-        self.instruction_input.setPlaceholderText("Optional: Add extra instruction (e.g. 'Use simple terms')")
+        self.instruction_input.setPlaceholderText(
+            "Optional: Add extra instruction (e.g. 'Use simple terms')"
+        )
         layout.addWidget(self.instruction_input)
 
         self.generate_button = QPushButton("Generate Flashcards")
@@ -52,7 +60,9 @@ class AIStudyContentGenerator(QWidget):
             file_path = urls[0].toLocalFile()
             if file_path.endswith(".txt"):
                 self.file_path = file_path
-                self.status_label.setText(f"✔ [{os.path.basename(file_path)}] uploaded successfully")
+                self.status_label.setText(
+                    f"✔ [{os.path.basename(file_path)}] uploaded successfully"
+                )
             else:
                 self.status_label.setText("❌ Only .txt files are supported.")
 
