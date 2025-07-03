@@ -4,10 +4,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-co = cohere.Client(os.getenv("COHERE_API_KEY"))
+
+def get_cohere_client():
+    return cohere.Client(os.getenv("COHERE_API_KEY"))
 
 
-def generate_study_content(text: str, prompt: str = "") -> str:
+def generate_study_content(text: str, prompt: str = "", co_client=None) -> str:
+    co = co_client or get_cohere_client()
+
     base_prompt = (
         "Convert the following academic or technical text into a list of flashcard-style Q&A pairs.\n"
         "Only output the questions and answers in the exact format:\n"
