@@ -5,6 +5,7 @@ pyinstaller>=6.3.0  # For packaging into exe
 dotenv~=0.9.9
 python-dotenv~=1.1.1
 uvicorn
-requests
-pytest
+requests~=2.32.4
+pytest~=8.4.1
 pytest-mock
+pydantic~=2.11.7
