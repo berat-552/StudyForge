@@ -1,9 +1,9 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv()  # ✅ Load the .env before reading variables
+load_dotenv()
 
-ENV = os.getenv("APP_ENV", "dev")
+ENV = os.getenv("APP_ENV", "dev")  # default to dev if not set
 
 if ENV == "prod":
     API_BASE_URL = "https://studyforge-api.onrender.com"
