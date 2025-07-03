@@ -10,6 +10,8 @@ A standalone AI-powered Windows app used by friends and family to generate flash
 
 - Python 3.11+
 - A [Cohere](https://cohere.com/) API key
+- Docker (optional, for containerised backend)
+- Git
 - Virtual environment set up (recommended)
 
 ---
@@ -56,7 +58,34 @@ Then it will launch the GUI.
 
 When you close the GUI, the backend will keep running in its terminal.
 
-### 🧪 Running Tests
+### 🐳 Running with Docker (Alternative Dev Option)
+If you want to run the backend in a container:
+
+#### 🛠️ Build the Docker image
 ```bash
-pytest
+make docker-build
 ```
+
+#### ▶️ Run the container + launch GUI
+```bash
+make dev-docker
+```
+This runs the container in the background and launches the GUI.
+
+When the GUI closes, the container is stopped automatically.
+
+#### 🛑 Manually Stop the Docker Container (if needed)
+```bash
+make docker-stop
+```
+#### 🧪 Running Tests
+```bash
+make test
+```
+
+#### 🧹 Format the Code
+```bash
+make format
+```
+
+Check out the [Makefile](./Makefile) for more commands.
