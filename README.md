@@ -32,7 +32,7 @@ pip install -r requirements.txt
 Create a .env file in the project root (you can copy from .env.example):
 
 ```bash
-copy .env.example .env
+copy .env.example .env # command for cmd.exe
 ```
 
 Then update the .env file with your Cohere API key:
