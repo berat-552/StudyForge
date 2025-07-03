@@ -2,8 +2,8 @@ services:
   - type: web
     name: studyforge-api
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn backend.api:app --host 0.0.0.0 --port 10000
+    repo: "https://github.com/berat-552/StudyForge"
+    dockerfilePath: ./Dockerfile
     runtime: python
     envVars:
       - key: COHERE_API_KEY
