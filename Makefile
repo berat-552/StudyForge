@@ -21,6 +21,8 @@ test:
 format:
 	black .
 
+lint:
+	flake8 .
 
 # ==== Docker Workflow ====
 .PHONY: docker-build docker-run docker-run-clean dev-docker docker-stop
