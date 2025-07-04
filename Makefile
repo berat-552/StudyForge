@@ -43,3 +43,6 @@ dev-docker:
 
 docker-stop:
 	-@docker stop studyforge-api && echo Stopped Docker container. || echo No running container to stop.
+
+docker-remove:
+	-@docker rm -f $(CONTAINER_NAME) && echo "Removed Docker container." || echo "No container to remove."
