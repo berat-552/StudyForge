@@ -6,7 +6,8 @@ __pycache__/
 .venv/
 venv/
 tests/
-run-dev.bat
+# Ignore local development scripts (used only by Makefile)
+scripts/*
 .DS_Store
 .git
 .gitignore

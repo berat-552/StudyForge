@@ -50,7 +50,12 @@ PROD_API_URL=https://studyforge-api.onrender.com
 Use the batch script to launch everything:
 
 ```bash
-run-dev.bat
+run-dev-windows.bat # Windows
+```
+
+OR 
+```bash
+run-dev-unix.sh # Unix
 ```
 This will start the FastAPI backend in a new terminal window. 
 
