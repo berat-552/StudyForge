@@ -34,7 +34,13 @@ def generate_study_content(text: str, prompt: str = "", co_client=None) -> str:
             max_tokens=600,
             temperature=0.4
         )
-        return response.generations[0].text.strip()
+        raw_output = response.generations[0].text.strip()
+
+        # Clean trailing non-QA lines
+        lines = raw_output.splitlines()
+        qa_lines = [line for line in lines if line.strip().startswith("Q:") or line.strip().startswith("A:")]
+        return "\n".join(qa_lines)
+
 
     except Exception as e:
         return f"[Error generating study content: {str(e)}]"
