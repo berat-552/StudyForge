@@ -49,3 +49,26 @@ docker-stop:
 
 docker-remove:
 	-@docker rm -f $(CONTAINER_NAME) && echo "Removed Docker container." || echo "No container to remove."
+
+# ==== Docker Compose Workflow ====
+.PHONY: compose-dev
+
+compose-dev:
+	docker compose -f docker-compose.dev.yml up
+
+.PHONY: compose-down
+
+compose-down:
+	docker compose -f docker-compose.dev.yml down
+
+
+dev-full:
+	@echo Starting backend using Docker Compose...
+	cmd /C "start /B docker compose -f docker-compose.dev.yml up"
+	@timeout /T 3 > NUL
+	@echo Launching GUI (main.py)...
+	python main.py
+
+dev-full-down:
+	@echo "Stopping backend (Docker Compose)..."
+	docker compose -f docker-compose.dev.yml down
