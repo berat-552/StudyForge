@@ -78,6 +78,25 @@ When the GUI closes, the container is stopped automatically.
 ```bash
 make docker-stop
 ```
+
+#### 🐳 Running with Docker Compose (Hot Reload Dev Setup)
+If you want live-reloading of the backend while you develop:
+
+Start backend (with hot reload) + launch GUI
+```bash
+make dev-full
+```
+
+This uses Docker Compose to start the backend with `--reload`, waits a few seconds, then launches the GUI app.
+The backend remains running after the GUI closes.
+
+Make sure you have a `.env` file in your project root. You can copy it from `.env.example` if needed.
+
+Stop the Docker Compose backend
+```bash
+make dev-full-down
+```
+---
 #### 🧪 Running Tests
 ```bash
 make test
