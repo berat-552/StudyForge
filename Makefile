@@ -12,8 +12,11 @@ run-backend:
 run-gui:
 	python main.py
 
-dev:
-	run-dev.bat
+dev-windows:
+	cmd /C scripts\run-dev-windows.bat
+
+dev-unix:
+	bash ./scripts/run-dev-unix.sh
 
 test:
 	pytest
@@ -37,12 +40,7 @@ docker-run-clean:
 	docker run --rm $(DOCKER_RUN_FLAGS) $(IMAGE_NAME)
 
 dev-docker:
-	@echo "Starting Docker container..."
-	docker run -d --rm --name $(CONTAINER_NAME) $(DOCKER_RUN_FLAGS) $(IMAGE_NAME)
-	@echo "Launching GUI..."
-	python main.py
-	@echo "Stopping Docker container..."
-	docker stop $(CONTAINER_NAME) > /dev/null || echo "⚠️ No running container found"
+	python scripts/start_dev_docker.py
 
 docker-stop:
 	-@docker stop studyforge-api && echo Stopped Docker container. || echo No running container to stop.
@@ -51,34 +49,26 @@ docker-remove:
 	-@docker rm -f $(CONTAINER_NAME) && echo "Removed Docker container." || echo "No container to remove."
 
 # ==== Docker Compose Workflow ====
-.PHONY: compose-dev
+.PHONY: compose-dev compose-down dev-full dev-full-down
 
 compose-dev:
 	docker compose -f docker-compose.dev.yml up
 
-.PHONY: compose-down
-
 compose-down:
 	docker compose -f docker-compose.dev.yml down
 
-
 dev-full:
-	@echo Starting backend using Docker Compose...
-	cmd /C "start /B docker compose -f docker-compose.dev.yml up"
-	@timeout /T 3 > NUL
-	@echo Launching GUI (main.py)...
-	python main.py
+	python scripts/start_dev_full.py
 
 dev-full-down:
 	@echo "Stopping backend (Docker Compose)..."
 	docker compose -f docker-compose.dev.yml down
 
 # ==== Packaging ====
-.PHONY: package clean-dist
+.PHONY: build clean
 
-package:
-	python -c "import os; os.environ['APP_ENV'] = 'prod'; import PyInstaller.__main__; PyInstaller.__main__.run(['--onefile', '--windowed', '--name', 'StudyForge', 'main.py'])"
+build:
+	python scripts/build_app_exe.py
 
-
-clean-dist:
-	python -c "import shutil, os; [shutil.rmtree(d, ignore_errors=True) for d in ['build', 'dist']]; [os.remove(f) for f in ['StudyForge.spec'] if os.path.exists(f)]"
+clean:
+	python scripts/clean_build_artifacts.py
