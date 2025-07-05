@@ -72,3 +72,13 @@ dev-full:
 dev-full-down:
 	@echo "Stopping backend (Docker Compose)..."
 	docker compose -f docker-compose.dev.yml down
+
+# ==== Packaging ====
+.PHONY: package clean-dist
+
+package:
+	python -c "import os; os.environ['APP_ENV'] = 'prod'; import PyInstaller.__main__; PyInstaller.__main__.run(['--onefile', '--windowed', '--name', 'StudyForge', 'main.py'])"
+
+
+clean-dist:
+	python -c "import shutil, os; [shutil.rmtree(d, ignore_errors=True) for d in ['build', 'dist']]; [os.remove(f) for f in ['StudyForge.spec'] if os.path.exists(f)]"
