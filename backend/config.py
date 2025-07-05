@@ -1,9 +1,15 @@
 import os
-from dotenv import load_dotenv
+import sys
 
-load_dotenv()
 
-ENV = os.getenv("APP_ENV", "dev")  # default to dev if not set
+def is_frozen():
+    return getattr(sys, 'frozen', False)
+
+
+# Default to prod if frozen (i.e. built with PyInstaller)
+ENV = os.getenv("APP_ENV", "dev")
+if is_frozen() and ENV == "dev":
+    ENV = "prod"
 
 if ENV == "prod":
     API_BASE_URL = "https://studyforge-api.onrender.com"
