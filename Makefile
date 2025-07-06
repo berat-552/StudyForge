@@ -40,7 +40,7 @@ docker-run-clean:
 	docker run --rm $(DOCKER_RUN_FLAGS) $(IMAGE_NAME)
 
 dev-docker:
-	python scripts/start_dev_docker.py
+	python scripts/start_api_docker.py
 
 docker-stop:
 	-@docker stop studyforge-api && echo Stopped Docker container. || echo No running container to stop.
