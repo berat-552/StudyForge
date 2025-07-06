@@ -1,6 +1,6 @@
 ﻿# StudyForge - AI Study Content Generator
 
-A standalone AI-powered Windows app used by friends and family to generate flashcards from raw text using LLM integration.
+An AI-powered desktop app used by friends and family to generate study content from raw text using LLM integration.
 
 ---
 
