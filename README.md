@@ -1,6 +1,6 @@
 ﻿# StudyForge - AI Study Content Generator
 
-An AI-powered desktop app used by friends and family to generate study content from raw text using LLM integration.
+An AI-powered desktop app to generate study content from raw text using LLM integration.
 
 ---
 
@@ -113,3 +113,4 @@ make format
 ```
 
 Check out the [Makefile](./Makefile) for more commands.
+
